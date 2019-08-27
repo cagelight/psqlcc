@@ -20,12 +20,12 @@ def btype_cflags(ctx):
 
 def options(opt):
 	opt.load("g++")
-	opt.add_option('--build_type', dest='build_type', type="string", default='RELEASE', action='store', help="DEBUG, NATIVE, RELEASE")
+	opt.add_option('--build-type', dest='build_type', type="string", default='RELEASE', action='store', help="DEBUG, NATIVE, RELEASE")
 
 def configure(ctx):
 	ctx.load("g++")
 	ctx.check(features='c cprogram', lib='pthread', uselib_store='PTHREAD')
-	ctx.check(features='c cprogram', lib='asterid', uselib_store='ASTERID')
+	ctx.check(features='c cprogram', lib='asterales', uselib_store='ASTERALES')
 	ctx.check(features='c cprogram', lib='pq', uselib_store='POSTGRES')
 	btup = ctx.options.build_type.upper()
 	if btup in ["DEBUG", "NATIVE", "RELEASE"]:
@@ -45,6 +45,6 @@ def build(bld):
 		features = "cxx cxxshlib",
 		target = coreprog_name,
 		source = bld_files,
-		uselib = ['PTHREAD', 'ASTERID', 'POSTGRES'],
+		uselib = ['PTHREAD', 'ASTERALES', 'POSTGRES'],
 		includes = [os.path.join(top, 'src')],
 	)

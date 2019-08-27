@@ -63,7 +63,7 @@ postgres::connection::connection(std::string const & dbname) : data { new privat
 	std::string constr = "user=postgres dbname=" + dbname;
 	data->con = PQconnectdb(constr.c_str());
 	if (PQstatus(data->con) != CONNECTION_OK) {
-		throw postgres::exception { asterid::strf("failed to connect to database \"%s\" (status %i)", dbname.c_str(), PQstatus(data->con)) };
+		throw postgres::exception { asterales::strf("failed to connect to database \"%s\" (status %i)", dbname.c_str(), PQstatus(data->con)) };
 	}
 	PQsetNoticeProcessor(data->con, notice, nullptr);
 	data->ok = true;

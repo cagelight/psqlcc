@@ -1,6 +1,6 @@
 #pragma once
 
-#include <asterid/strop.hh>
+#include <asterales/strop.hh>
 #include <condition_variable>
 #include <memory>
 #include <mutex>
